@@ -23,6 +23,7 @@ import {
 } from "sandstone";
 import { rng } from "./main";
 import { uniform } from "./lib/uniform";
+import { invisibilityItemNBT } from "./items/main";
 
 const self = Selector("@s");
 
@@ -858,6 +859,48 @@ LootTable(`loots/pushback_item`, {
     },
   ],
 });
+LootTable(`loots/jedi_holocron`, {
+  pools: [
+    {
+      rolls: 1,
+      bonus_rolls: 1,
+      entries: [
+        {
+          type: "minecraft:item",
+          name: "minecraft:totem_of_undying",
+        },
+      ],
+    },
+  ],
+});
+LootTable(`loots/invisibility_item`, {
+  pools: [
+    {
+      rolls: 1,
+      bonus_rolls: 1,
+      entries: [
+        {
+          type: "minecraft:item",
+          name: "minecraft:ender_pearl",
+          functions: [
+            {
+              function: "set_nbt",
+              tag: invisibilityItemNBT,
+            },
+            {
+              function: "set_count",
+              count: {
+                type: "uniform",
+                min: 2,
+                max: 6,
+              },
+            },
+          ],
+        },
+      ],
+    },
+  ],
+});
 
 // * BAD LOOTS
 // ! Order matter as it is sampling the name from the array itself
@@ -1140,6 +1183,14 @@ LootTable("good_loot", {
         {
           type: "minecraft:loot_table",
           name: "default:loots/pushback_item",
+        },
+        {
+          type: "minecraft:loot_table",
+          name: "default:loots/jedi_holocron",
+        },
+        {
+          type: "minecraft:loot_table",
+          name: "default:loots/invisibility_item",
         },
       ],
     },

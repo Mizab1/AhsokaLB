@@ -10,8 +10,8 @@ Todo:
     ✔ Dual Light Sabre @done(23-08-15 21:03)
     ✔ Armor (full set gives a super jump life force jump) textured to look like Ahsoka Tano @done(23-08-16 13:17)
     ✔ A Force Push Item (pushes back a player with a cooldown) @done(23-08-16 18:04)
-    ☐ Retexture the toten of undying to be a jedi holocron
-    ☐ Force Stealth Item (when used gives the person perfect invisibility for 15 seconds)
+    ✔ Retexture the toten of undying to be a jedi holocron @done(23-08-16 20:55)
+    ✔ Force Stealth Item (when used gives the person perfect invisibility for 15 seconds) @done(23-08-17 15:27)
     ☐ red lightsaber that can shoot lightning as a special ability
     ☐ Beskar spear with reach
 
@@ -43,4 +43,8 @@ Todo:
       ✔ Drop pet horse spawn egg @done(23-08-15 20:00)
       ✔ drop notch apple @done(23-08-15 20:01)
       ✔ drop various food @done(23-08-15 20:12)
+
+    Test:
+      ☐ Push item
+      ☐ Invisibility Pearl
 

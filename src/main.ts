@@ -9,10 +9,12 @@ import {
   data,
   effect,
   execute,
+  give,
   kill,
   particle,
   rel,
   say,
+  sleep,
   summon,
   tag,
   tellraw,
@@ -26,6 +28,9 @@ import { uniform } from "./lib/uniform";
 import { pickRandom } from "./loots";
 import { ConditionClass } from "sandstone/variables";
 import { pushBack } from "./util/pushBack";
+import { enderPearlItemsLogic } from "./items/main";
+
+const self = Selector("@s");
 
 // ** Scores & Variables ** //
 export const internal: ObjectiveInstance = Objective.create(
@@ -47,8 +52,6 @@ type luckyBlockData = {
 export const typeOfLuckyBlocks: luckyBlockData[] = [
   { name: "ahsoka", customModelData: 110001 },
 ];
-
-const self = Selector("@s");
 
 // ** Game functions **//
 MCFunction(
@@ -72,8 +75,8 @@ MCFunction(
       pickRandom();
     });
 
-    // Logic for pushback item
-    pushBackItemLogic();
+    // Logic related to ender pearl based custom items
+    enderPearlItemsLogic();
   },
   {
     runEachTick: true,
@@ -126,23 +129,3 @@ MCFunction(
     runEach: "5t",
   }
 );
-
-/* detect if the player is using the pushback item */
-const pushBackItemLogic = () => {
-  execute
-    .as("@a")
-    .at(self)
-    .if(playerUsedEnderPearl.matches([1, Infinity]))
-    .run(() => {
-      playerUsedEnderPearl.reset();
-      tag(self).add("pushback_user");
-      execute
-        .as(Selector("@e", { type: "minecraft:ender_pearl" }))
-        .if(_.data.entity("@s", "Item.tag.pushback_item"))
-        .run(() => {
-          pushBack();
-          kill(self);
-        });
-      tag(self).remove("pushback_user");
-    });
-};
