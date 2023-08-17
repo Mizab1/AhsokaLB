@@ -1241,7 +1241,6 @@ LootTable("good_loot", {
         {
           type: "minecraft:loot_table",
           name: "default:loots/beskar_spear",
-          weight: 100,
         },
       ],
     },

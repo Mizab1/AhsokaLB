@@ -234,9 +234,16 @@ const redLightSaberHighlightTarget = () => {
 
 const beskarSpearLogic = () => {
   execute
-    .as(Selector("@e", { type: "#aestd1:living_base", distance: [1, 6] }))
+    .as(Selector("@e", { type: "#aestd1:living_base", distance: [1, 8] }))
     .at(self)
     .run(() => {
       raw(`damage @s 3 minecraft:player_attack`);
+      particle(
+        "minecraft:enchanted_hit",
+        rel(0, 1, 0),
+        [0.5, 0.5, 0.5],
+        0.1,
+        30
+      );
     });
 };

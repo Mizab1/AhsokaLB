@@ -1,50 +1,50 @@
 
 Todo:
   Add Lucky Blocks Mechanics:
-    ✔ Add Placing and breaking mechanics @done(23-08-14 23:36)
-    ✔ Add Models @done(23-08-14 23:36)
-    ✔ Add Textures @done(23-08-14 23:36)
-    ✔ Create Generic Loots @done(23-08-16 18:04)
+    ✔ Add Placing and breaking mechanics @done
+    ✔ Add Models @done
+    ✔ Add Textures @done
+    ✔ Create Generic Loots @done
 
   Custom Items:
-    ✔ Dual Light Sabre @done(23-08-15 21:03)
-    ✔ Armor (full set gives a super jump life force jump) textured to look like Ahsoka Tano @done(23-08-16 13:17)
-    ✔ A Force Push Item (pushes back a player with a cooldown) @done(23-08-16 18:04)
-    ✔ Retexture the toten of undying to be a jedi holocron @done(23-08-16 20:55)
-    ✔ Force Stealth Item (when used gives the person perfect invisibility for 15 seconds) @done(23-08-17 15:27)
-    ✔ red lightsaber that can shoot lightning as a special ability @done(23-08-17 19:15)
-    ✔ Beskar spear with reach @done(23-08-17 21:43)
+    ✔ Dual Light Sabre @done
+    ✔ Armor (full set gives a super jump life force jump) textured to look like Ahsoka Tano @done
+    ✔ A Force Push Item (pushes back a player with a cooldown) @done
+    ✔ Retexture the toten of undying to be a jedi holocron @done
+    ✔ Force Stealth Item (when used gives the person perfect invisibility for 15 seconds) @done
+    ✔ red lightsaber that can shoot lightning as a special ability @done
+    ✔ Beskar spear with reach @done
 
   Loots:
     Bad:
-      ✔ zombie_horde @done(23-08-15 18:57)
-      ✔ lava @done(23-08-15 18:57)
-      ✔ prison @done(23-08-15 18:57)
-      ✔ spawn_slime @done(23-08-15 18:57)
-      ✔ spawn_magma @done(23-08-15 18:57)
-      ✔ spawn_witch @done(23-08-15 18:57)
-      ✔ spawn_skeleton_jokey @done(23-08-15 18:57)
-      ✔ OP Zombie @done(23-08-15 19:19)
-      ✔ Bad Effects @done(23-08-15 19:19)
-      ✔ Look up trap @done(23-08-15 19:35)
+      ✔ zombie_horde @done
+      ✔ lava @done
+      ✔ prison @done
+      ✔ spawn_slime @done
+      ✔ spawn_magma @done
+      ✔ spawn_witch @done
+      ✔ spawn_skeleton_jokey @done
+      ✔ OP Zombie @done
+      ✔ Bad Effects @done
+      ✔ Look up trap @done
 
     Good:
-      ✔ Basic Tools @done(23-08-15 18:59)
-      ✔ basic_armor @done(23-08-15 18:59)
-      ✔ iron_armor @done(23-08-15 18:59)
-      ✔ enchanted_tools @done(23-08-15 18:59)
-      ✔ tame_dog @done(23-08-15 18:59)
-      ✔ rare_blocks @done(23-08-15 18:59)
-      ✔ bow @done(23-08-15 18:59)
-      ✔ ender_pearl @done(23-08-15 18:59)
-      ✔ sponge @done(23-08-15 19:37)
-      ✔ golden apple @done(23-08-15 19:41)
-      ✔ Drops potion @done(23-08-15 19:54)
-      ✔ Drop pet horse spawn egg @done(23-08-15 20:00)
-      ✔ drop notch apple @done(23-08-15 20:01)
-      ✔ drop various food @done(23-08-15 20:12)
+      ✔ Basic Tools @done
+      ✔ basic_armor @done
+      ✔ iron_armor @done
+      ✔ enchanted_tools @done
+      ✔ tame_dog @done
+      ✔ rare_blocks @done
+      ✔ bow @done
+      ✔ ender_pearl @done
+      ✔ sponge @done
+      ✔ golden apple @done
+      ✔ Drops potion @done
+      ✔ Drop pet horse spawn egg @done
+      ✔ drop notch apple @done
+      ✔ drop various food @done
 
     Test:
-      ☐ Push item
-      ☐ Invisibility Pearl
+      ✔ Push item @done
+      ✔ Invisibility Pearl @done
 
