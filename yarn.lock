@@ -1185,6 +1185,13 @@ sandstone-cli@^0.5.4:
     semver "^7.3.4"
     ts-node "^9.0.0"
 
+sandstone-raycast@^1.0.12:
+  version "1.0.12"
+  resolved "https://registry.yarnpkg.com/sandstone-raycast/-/sandstone-raycast-1.0.12.tgz#fa7b6a50f9f21cfc9e6749347a6ece0ba6341b2d"
+  integrity sha512-r5zjsWeFtQMJzpez2e30X5Vphf2nIc/jXX8VeYEPpnYeTLnXVxzCw3kxKbKn4mvuIGR2vu3d7CR/eLbnmo/Kgg==
+  dependencies:
+    sandstone "^0.13.6"
+
 sandstone@^0.13.6:
   version "0.13.6"
   resolved "https://registry.yarnpkg.com/sandstone/-/sandstone-0.13.6.tgz#ab11b695f7a88411b2fc2ba13900c2af1ce8eade"

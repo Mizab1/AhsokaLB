@@ -28,20 +28,22 @@ import { uniform } from "./lib/uniform";
 import { pickRandom } from "./loots";
 import { ConditionClass } from "sandstone/variables";
 import { pushBack } from "./util/pushBack";
-import { enderPearlItemsLogic } from "./items/main";
+import { carrotOnAStickItemsLogic, enderPearlItemsLogic } from "./items/main";
 
 const self = Selector("@s");
 
 // ** Scores & Variables ** //
-export const internal: ObjectiveInstance = Objective.create(
-  "internal",
-  "dummy"
-);
-export const usedEnderPearlObj: ObjectiveInstance = Objective.create(
+const internal: ObjectiveInstance = Objective.create("internal", "dummy");
+const usedEnderPearlObj: ObjectiveInstance = Objective.create(
   "used_ender_pearl",
   "minecraft.used:minecraft.ender_pearl"
 );
+const usedCarrotOnAStickObj: ObjectiveInstance = Objective.create(
+  "used_coas",
+  "minecraft.used:minecraft.carrot_on_a_stick"
+);
 export const playerUsedEnderPearl: Score = usedEnderPearlObj("@s");
+export const playerUsedCarrotOnAStick: Score = usedCarrotOnAStickObj("@s");
 export const rng: Score = internal("rng");
 
 /* Array of types of Lucky Blocks and its type */
@@ -77,6 +79,9 @@ MCFunction(
 
     // Logic related to ender pearl based custom items
     enderPearlItemsLogic();
+
+    // Logic related to Carrot on a stick based custom items
+    carrotOnAStickItemsLogic();
   },
   {
     runEachTick: true,

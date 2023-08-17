@@ -10,12 +10,19 @@ import {
   PredicateInstance,
   Predicate,
   say,
+  MCFunction,
+  particle,
+  rel,
+  loc,
+  raw,
 } from "sandstone";
-import { playerUsedEnderPearl } from "../main";
+import { playerUsedCarrotOnAStick, playerUsedEnderPearl } from "../main";
 import { pushBack } from "../util/pushBack";
+import { raycast } from "sandstone-raycast";
 
 const self = Selector("@s");
 
+// ** Ender Pearl Based **//
 /* detect if the player is using the custom ender pearl item */
 export const enderPearlItemsLogic = () => {
   execute
@@ -26,14 +33,17 @@ export const enderPearlItemsLogic = () => {
       playerUsedEnderPearl.reset();
 
       // Push back item
-      tagChecking("Item.tag.pushback_item", pushBackItemLogic);
+      tagCheckingForEnderPearl("Item.tag.pushback_item", pushBackItemLogic);
 
       // Invisibility Item Logic
-      tagChecking("Item.tag.invisibility_item", invisibilityItemLogic);
+      tagCheckingForEnderPearl(
+        "Item.tag.invisibility_item",
+        invisibilityItemLogic
+      );
     });
 };
 /* Tag Checking: that is if the enderpearl has the specified tag */
-const tagChecking = (tagName: string, cb) => {
+const tagCheckingForEnderPearl = (tagName: string, cb: { (): void }) => {
   _.if(
     _.data.entity(
       Selector("@e", {
@@ -103,3 +113,130 @@ const isInvisiblePredicate: PredicateInstance = Predicate(
     },
   }
 );
+
+//** COAS Based *//
+/* detect if the player is using the coas item */
+export const carrotOnAStickItemsLogic = () => {
+  // Always highlight the target when player is holding the item
+  execute
+    .as("@a")
+    .at(self)
+    .run(() => {
+      itemCheckingForCOAS(
+        "red_lightsaber",
+        100001,
+        redLightSaberHighlightTarget
+      );
+    });
+  // Detect when the player When used the item
+  execute
+    .as("@a")
+    .at(self)
+    .if(playerUsedCarrotOnAStick.matches([1, Infinity]))
+    .run(() => {
+      playerUsedCarrotOnAStick.reset();
+
+      // if the player used the custom item item
+      itemCheckingForCOAS("red_lightsaber", 100001, redLightSaberLogic);
+      itemCheckingForCOAS("beskar_spear", 100002, beskarSpearLogic);
+    });
+};
+// Create the predicate and test if the player is folding the custom item
+// ! This function must be run from the context of the player
+const itemCheckingForCOAS = (
+  predicateName: string,
+  customModelData: number,
+  cb: { (): void }
+) => {
+  // Create a  custom predicate
+  const predicate = Predicate(
+    predicateName,
+    {
+      condition: "minecraft:entity_properties",
+      entity: "this",
+      predicate: {
+        type: "minecraft:player",
+        equipment: {
+          mainhand: {
+            items: ["minecraft:carrot_on_a_stick"],
+            nbt: `{CustomModelData:${customModelData}}`,
+          },
+        },
+      },
+    },
+    {
+      onConflict: "ignore",
+    }
+  );
+
+  // check if the player is using the custom item from which the predicate was created
+  _.if(Selector("@s", { predicate: predicate }), () => {
+    cb();
+  });
+};
+
+const redLightSaberLogic = () => {
+  tag(self).add("used_red_lightsaber");
+  execute.anchored("eyes").run(() => {
+    raycast(
+      "raycast/red_saber_lightning/lightning/main",
+      "minecraft:air",
+      Selector("@e", {
+        type: "#aestd1:living_base",
+        tag: "!used_red_lightsaber",
+        dx: 0,
+      }),
+      MCFunction("raycast/red_saber_lightning/lightning/update", () => {
+        raw(`particle minecraft:electric_spark ~ ~ ~ 0 0 0 0.1 1`);
+      }),
+      MCFunction("raycast/red_saber_lightning/lightning/hit", () => {
+        execute
+          .at(
+            Selector("@e", {
+              type: "#aestd1:living_base",
+              tag: "!used_red_lightsaber",
+              dx: 0,
+            })
+          )
+          .run.summon("minecraft:lightning_bolt", rel(0, 0, 0));
+      })
+    );
+  });
+  tag(self).remove("used_red_lightsaber");
+};
+const redLightSaberHighlightTarget = () => {
+  tag(self).add("is_holding_red_lightsaber");
+  execute.anchored("eyes").run(() => {
+    raycast(
+      "raycast/red_saber_lightning/highlight/main",
+      "minecraft:air",
+      Selector("@e", {
+        type: "#aestd1:living_base",
+        tag: "!is_holding_red_lightsaber",
+        dx: 0,
+      }),
+      MCFunction("raycast/red_saber_lightning/highlight/update", () => {}),
+      MCFunction("raycast/red_saber_lightning/highlight/hit", () => {
+        execute
+          .as(
+            Selector("@e", {
+              type: "#aestd1:living_base",
+              tag: "!is_holding_red_lightsaber",
+              dx: 0,
+            })
+          )
+          .run.effect.give(self, "minecraft:glowing", 1, 0, true);
+      })
+    );
+  });
+  tag(self).remove("is_holding_red_lightsaber");
+};
+
+const beskarSpearLogic = () => {
+  execute
+    .as(Selector("@e", { type: "#aestd1:living_base", distance: [1, 6] }))
+    .at(self)
+    .run(() => {
+      raw(`damage @s 3 minecraft:player_attack`);
+    });
+};

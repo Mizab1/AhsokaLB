@@ -901,6 +901,48 @@ LootTable(`loots/invisibility_item`, {
     },
   ],
 });
+LootTable(`loots/red_light_saber`, {
+  type: "generic",
+  pools: [
+    {
+      rolls: 1,
+      bonus_rolls: 0,
+      entries: [
+        {
+          type: "minecraft:item",
+          name: "minecraft:carrot_on_a_stick",
+          functions: [
+            {
+              function: "set_nbt",
+              tag: `{display:{Name:'{"text":"Red Light Saber","color":"red","italic":false}',Lore:['{"text":"Right-Click to use lightning ability","color":"dark_purple","italic":false}']},HideFlags:255,CustomModelData:100001,AttributeModifiers:[{AttributeName:"generic.attack_damage",Name:"generic.attack_damage",Amount:4,Operation:0,UUID:[I;-1984893098,-440646192,-1326906271,-1844454393]}]}`,
+            },
+          ],
+        },
+      ],
+    },
+  ],
+});
+LootTable(`loots/beskar_spear`, {
+  type: "generic",
+  pools: [
+    {
+      rolls: 1,
+      bonus_rolls: 0,
+      entries: [
+        {
+          type: "minecraft:item",
+          name: "minecraft:carrot_on_a_stick",
+          functions: [
+            {
+              function: "set_nbt",
+              tag: `{display:{Name:'{"text":"Beskar Spear","color":"red","italic":false}',Lore:['{"text":"Right-Click to use reach ability","color":"dark_purple","italic":false}']},HideFlags:255,CustomModelData:100002,AttributeModifiers:[{AttributeName:"generic.attack_damage",Name:"generic.attack_damage",Amount:4,Operation:0,UUID:[I;2051517231,7553137,-1362097383,-402637939]}]}`,
+            },
+          ],
+        },
+      ],
+    },
+  ],
+});
 
 // * BAD LOOTS
 // ! Order matter as it is sampling the name from the array itself
@@ -1191,6 +1233,15 @@ LootTable("good_loot", {
         {
           type: "minecraft:loot_table",
           name: "default:loots/invisibility_item",
+        },
+        {
+          type: "minecraft:loot_table",
+          name: "default:loots/red_light_saber",
+        },
+        {
+          type: "minecraft:loot_table",
+          name: "default:loots/beskar_spear",
+          weight: 100,
         },
       ],
     },

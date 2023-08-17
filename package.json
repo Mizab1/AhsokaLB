@@ -10,7 +10,8 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "sandstone": "^0.13.6"
+    "sandstone": "^0.13.6",
+    "sandstone-raycast": "^1.0.12"
   },
   "devDependencies": {
     "@types/node": "^18.14.0",
