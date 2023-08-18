@@ -9,21 +9,19 @@ import {
   effect,
   execute,
   fill,
-  functionCmd,
   give,
   kill,
   loot,
   rel,
-  say,
   setblock,
   spreadplayers,
   summon,
   tellraw,
   time,
 } from "sandstone";
-import { rng } from "./main";
-import { uniform } from "./lib/uniform";
 import { invisibilityItemNBT } from "./items/main";
+import { uniform } from "./lib/uniform";
+import { rng } from "./main";
 
 const self = Selector("@s");
 

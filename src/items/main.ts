@@ -1,24 +1,22 @@
 import {
-  execute,
-  tag,
+  MCFunction,
+  Predicate,
+  PredicateInstance,
   Selector,
   _,
-  kill,
-  tellraw,
   effect,
+  execute,
   give,
-  PredicateInstance,
-  Predicate,
-  say,
-  MCFunction,
+  kill,
   particle,
-  rel,
-  loc,
   raw,
+  rel,
+  tag,
+  tellraw,
 } from "sandstone";
+import { raycast } from "sandstone-raycast";
 import { playerUsedCarrotOnAStick, playerUsedEnderPearl } from "../main";
 import { pushBack } from "../util/pushBack";
-import { raycast } from "sandstone-raycast";
 
 const self = Selector("@s");
 
