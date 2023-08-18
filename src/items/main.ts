@@ -235,7 +235,7 @@ const beskarSpearLogic = () => {
     .as(Selector("@e", { type: "#aestd1:living_base", distance: [1, 8] }))
     .at(self)
     .run(() => {
-      raw(`damage @s 3 minecraft:player_attack`);
+      raw(`damage @s 3 minecraft:generic`);
       particle(
         "minecraft:enchanted_hit",
         rel(0, 1, 0),
