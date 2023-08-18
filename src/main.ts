@@ -5,30 +5,20 @@ import {
   Score,
   Selector,
   _,
-  abs,
-  data,
   effect,
   execute,
-  give,
-  kill,
   particle,
   rel,
-  say,
-  sleep,
   summon,
-  tag,
-  tellraw,
 } from "sandstone";
+import { ConditionClass } from "sandstone/variables";
+import { carrotOnAStickItemsLogic, enderPearlItemsLogic } from "./items/main";
+import { pickRandom } from "./loots";
 import {
   giveLuckyBlock,
   placeLuckyBlockInTheWorld,
   validateBreaking,
 } from "./repo";
-import { uniform } from "./lib/uniform";
-import { pickRandom } from "./loots";
-import { ConditionClass } from "sandstone/variables";
-import { pushBack } from "./util/pushBack";
-import { carrotOnAStickItemsLogic, enderPearlItemsLogic } from "./items/main";
 
 const self = Selector("@s");
 
@@ -38,6 +28,8 @@ const usedEnderPearlObj: ObjectiveInstance = Objective.create(
   "used_ender_pearl",
   "minecraft.used:minecraft.ender_pearl"
 );
+const redLightSaberCooldownObj: ObjectiveInstance =
+  Objective.create("red_s_cooldown");
 const usedCarrotOnAStickObj: ObjectiveInstance = Objective.create(
   "used_coas",
   "minecraft.used:minecraft.carrot_on_a_stick"
@@ -45,6 +37,8 @@ const usedCarrotOnAStickObj: ObjectiveInstance = Objective.create(
 export const playerUsedEnderPearl: Score = usedEnderPearlObj("@s");
 export const playerUsedCarrotOnAStick: Score = usedCarrotOnAStickObj("@s");
 export const rng: Score = internal("rng");
+export const redLightSaberCooldownPlayer: Score =
+  redLightSaberCooldownObj("@s");
 
 /* Array of types of Lucky Blocks and its type */
 type luckyBlockData = {

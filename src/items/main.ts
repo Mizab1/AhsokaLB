@@ -15,7 +15,11 @@ import {
   tellraw,
 } from "sandstone";
 import { raycast } from "sandstone-raycast";
-import { playerUsedCarrotOnAStick, playerUsedEnderPearl } from "../main";
+import {
+  playerUsedCarrotOnAStick,
+  playerUsedEnderPearl,
+  redLightSaberCooldownPlayer,
+} from "../main";
 import { pushBack } from "../util/pushBack";
 
 const self = Selector("@s");
@@ -125,6 +129,9 @@ export const carrotOnAStickItemsLogic = () => {
         100001,
         redLightSaberHighlightTarget
       );
+
+      // Red light Saber Cooldown Logic
+      redLightSaberCooldownLogic();
     });
   // Detect when the player When used the item
   execute
@@ -174,40 +181,46 @@ const itemCheckingForCOAS = (
 };
 
 const redLightSaberLogic = () => {
-  tag(self).add("used_red_lightsaber");
-  execute.anchored("eyes").run(() => {
-    raycast(
-      "raycast/red_saber_lightning/lightning/main",
-      "minecraft:air",
-      Selector("@e", {
-        type: "#aestd1:living_base",
-        tag: "!used_red_lightsaber",
-        dx: 0,
-      }),
-      MCFunction("raycast/red_saber_lightning/lightning/update", () => {
-        raw(`particle minecraft:electric_spark ~ ~ ~ 0 0 0 0.1 1`);
-      }),
-      MCFunction("raycast/red_saber_lightning/lightning/hit", () => {
-        execute
-          .at(
-            Selector("@e", {
-              type: "#aestd1:living_base",
-              tag: "!used_red_lightsaber",
-              dx: 0,
-            })
-          )
-          .run.summon("minecraft:lightning_bolt", rel(0, 0, 0));
-      })
-    );
+  _.if(redLightSaberCooldownPlayer.matches(0), () => {
+    tag(self).add("used_red_lightsaber");
+    execute.anchored("eyes").run(() => {
+      raycast(
+        "raycast/red_saber_lightning/lightning/main",
+        // @ts-ignore
+        "#aestd1:passthrough",
+        Selector("@e", {
+          type: "#aestd1:living_base",
+          tag: "!used_red_lightsaber",
+          dx: 0,
+        }),
+        MCFunction("raycast/red_saber_lightning/lightning/update", () => {
+          raw(`particle minecraft:electric_spark ~ ~ ~ 0 0 0 0.1 1`);
+        }),
+        MCFunction("raycast/red_saber_lightning/lightning/hit", () => {
+          execute
+            .at(
+              Selector("@e", {
+                type: "#aestd1:living_base",
+                tag: "!used_red_lightsaber",
+                dx: 0,
+              })
+            )
+            .run.summon("minecraft:lightning_bolt", rel(0, 0, 0));
+        })
+      );
+    });
+    tag(self).remove("used_red_lightsaber");
+    // Add a cooldown
+    redLightSaberCooldownPlayer.set(40);
   });
-  tag(self).remove("used_red_lightsaber");
 };
 const redLightSaberHighlightTarget = () => {
   tag(self).add("is_holding_red_lightsaber");
   execute.anchored("eyes").run(() => {
     raycast(
       "raycast/red_saber_lightning/highlight/main",
-      "minecraft:air",
+      // @ts-ignore
+      "#aestd1:passthrough",
       Selector("@e", {
         type: "#aestd1:living_base",
         tag: "!is_holding_red_lightsaber",
@@ -228,6 +241,13 @@ const redLightSaberHighlightTarget = () => {
     );
   });
   tag(self).remove("is_holding_red_lightsaber");
+};
+const redLightSaberCooldownLogic = () => {
+  _.if(_.not(redLightSaberCooldownPlayer.matches([Infinity, 0])), () => {
+    redLightSaberCooldownPlayer.remove(1);
+  }).else(() => {
+    redLightSaberCooldownPlayer.set(0);
+  });
 };
 
 const beskarSpearLogic = () => {
