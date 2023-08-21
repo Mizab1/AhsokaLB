@@ -776,12 +776,6 @@ LootTable(`loots/ahsoka_tano_armor`, {
             },
           ],
         },
-      ],
-    },
-    {
-      rolls: 1,
-      bonus_rolls: 0,
-      entries: [
         {
           type: "minecraft:item",
           name: "minecraft:netherite_chestplate",
@@ -792,12 +786,6 @@ LootTable(`loots/ahsoka_tano_armor`, {
             },
           ],
         },
-      ],
-    },
-    {
-      rolls: 1,
-      bonus_rolls: 0,
-      entries: [
         {
           type: "minecraft:item",
           name: "minecraft:netherite_leggings",
@@ -808,12 +796,6 @@ LootTable(`loots/ahsoka_tano_armor`, {
             },
           ],
         },
-      ],
-    },
-    {
-      rolls: 1,
-      bonus_rolls: 0,
-      entries: [
         {
           type: "minecraft:item",
           name: "minecraft:netherite_boots",
